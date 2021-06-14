@@ -7,7 +7,7 @@ public class Launcher{
 
     public static void main(String[] args) throws InterruptedException{
 
-        Random random = new Random();
+        /*Random random = new Random();
 
         HashMap<String,Integer> testy = new HashMap<>();
         testy.put("Iron",0);
@@ -42,7 +42,19 @@ public class Launcher{
         System.out.println(testy.toString());
 
 
+*/
 
+
+        SpaceStation station = new SpaceStation("Unconquered",10000);
+
+        station.buyShip();
+        station.buyShip();
+        station.buyShip();
+        station.buyShip();
+        station.buyShip();
+        station.buyShip();
+
+        System.out.println(station);
 
 
 

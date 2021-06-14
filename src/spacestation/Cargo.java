@@ -18,5 +18,10 @@ public class Cargo {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "Cargo" +
+                "\nstorage=" + storage +
+                "\nresources=" + resources;
+    }
 }

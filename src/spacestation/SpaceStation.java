@@ -19,15 +19,28 @@ public class SpaceStation {
     }
 
 
-    public void buyShip(int number){
+    public void buyShip(){
 
-        if (credits>=100){
+        if (credits>=100&&ships.size()<5){
             System.out.println("You bought a new Ship!");
             ships.add(new Ship());
-        }else{
+            credits-=100;
+        }else if (credits==0){
             System.out.println("You don't have enough credits to buy a new Ship!");
 
+        }else if (ships.size()>=5){
+            System.out.println("You already have 5 ships!");
         }
 
+    }
+
+
+    @Override
+    public String toString() {
+        return "SpaceStation" +
+                "\nname='" + name + '\'' +
+                "\ncredits=" + credits +
+                "\nships=" + ships +
+                "\ncargo=" + cargo;
     }
 }

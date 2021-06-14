@@ -28,4 +28,14 @@ public class Ship {
     public List<CrewMember> getMembers() {
         return members;
     }
+
+    @Override
+    public String toString() {
+        return "Ship{" +
+                "name='" + name + '\'' +
+                ", size=" + size +
+                ", mineSpeed=" + mineSpeed +
+                ", members=" + members +
+                '}';
+    }
 }
