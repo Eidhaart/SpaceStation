@@ -17,6 +17,7 @@ public class Launcher{
 
 
 
+
         for (int i = 0; i < 5; i++) {
             choice= random.nextInt(3);
             switch (choice){
