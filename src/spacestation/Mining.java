@@ -1,8 +1,10 @@
 package spacestation;
 
+import java.util.HashMap;
+
 public interface Mining {
 
-    public void mine();
+    public HashMap<String, Integer> mine() throws InterruptedException;
 
     public void takeDamage();
 

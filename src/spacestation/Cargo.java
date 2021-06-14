@@ -10,11 +10,6 @@ public class Cargo {
 
     public Cargo(int storage) {
         this.storage = storage;
-        this.resources.put("Iron", 0);
-        this.resources.put("Food", 0);
-        this.resources.put("Junk", 0);
-        this.resources.put("artifacts", 0);
-        this.resources.put("Technology", 0);
 
     }
 
@@ -23,5 +18,9 @@ public class Cargo {
         return "Cargo" +
                 "\nstorage=" + storage +
                 "\nresources=" + resources;
+    }
+
+    public void addResources(String resource, int quantity){
+        this.resources.put(resource.toLowerCase(),quantity);
     }
 }

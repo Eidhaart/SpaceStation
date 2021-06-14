@@ -1,36 +1,65 @@
 package spacestation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class SpaceStation {
 
     private String name;
     private int credits;
 
-    List<Ship> ships;
+    HashMap<String, Ship> ships;
     Cargo cargo;
+    Scanner scanner = new Scanner(System.in);
 
     public SpaceStation(String name, int credits) {
         this.name = name;
         this.credits = credits;
         this.cargo = new Cargo(200);
-        this.ships = new ArrayList<>();
+        this.ships = new HashMap<>();
     }
 
-
-    public void buyShip(){
-
-        if (credits>=100&&ships.size()<5){
-            System.out.println("You bought a new Ship!");
-            ships.add(new Ship());
+    public boolean creditRequirements() {
+        if (this.credits >= 100 && this.ships.size() < 5) {
             credits-=100;
-        }else if (credits==0){
-            System.out.println("You don't have enough credits to buy a new Ship!");
-
-        }else if (ships.size()>=5){
-            System.out.println("You already have 5 ships!");
+            return true;
+        } else {
+            System.out.println("You dont have enough credits!");
+            return false;
         }
+    }
+
+    public void buyShip() {
+
+        if (creditRequirements()) {
+            System.out.println("You bought a new Ship!");
+            boolean isValid = true;
+            String shipName;
+
+            while (isValid){
+                System.out.println("Name your ship!");
+                 shipName = scanner.nextLine();
+
+                if (!ships.containsKey(shipName)){
+                    ships.put(shipName,new Ship(shipName));
+                    isValid = false;
+                }else {
+                    System.out.println("A ship with that name already Exists!");
+                    isValid=true;
+                }
+            }
+        }
+    }
+
+    public void sendShip(String name) throws InterruptedException {
+
+        ships.get(name).dock(false);
+        Thread.sleep(3000);
+        System.out.println("Ship returns!");
+        cargo.resources = ships.get(name).mine();
+
 
     }
 

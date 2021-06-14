@@ -2,7 +2,7 @@ package spacestation;
 
 import java.util.HashMap;
 
-public class CrewMember implements Mining {
+public class CrewMember {
 
     private boolean inStation = true;
     private String name;
@@ -11,7 +11,6 @@ public class CrewMember implements Mining {
     private int level;
     private int energy;
     private String type;
-    HashMap<String, Integer> resources = new HashMap<>();
 
     public CrewMember(String name, int health, int speed, int level, String type) {
         this.name = name;
@@ -22,18 +21,13 @@ public class CrewMember implements Mining {
         this.type = type;
     }
 
-    @Override
-    public void mine() {
-
+    public int getSpeed() {
+        return speed;
     }
 
-    @Override
-    public void takeDamage() {
-
+    public int getEnergy(){
+        return energy;
     }
 
-    @Override
-    public void heal() {
 
-    }
 }

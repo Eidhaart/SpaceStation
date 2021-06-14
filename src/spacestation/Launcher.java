@@ -1,5 +1,6 @@
 package spacestation;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -45,18 +46,23 @@ public class Launcher{
 */
 
 
-        SpaceStation station = new SpaceStation("Unconquered",10000);
+        SpaceStation station = new SpaceStation("Unconquered",200);
+
+
 
         station.buyShip();
         station.buyShip();
-        station.buyShip();
-        station.buyShip();
-        station.buyShip();
-        station.buyShip();
+
 
         System.out.println(station);
 
+        station.sendShip("Santiago");
 
+        System.out.println(station);
+
+        station.sendShip("Santiago");
+
+        System.out.println(station);
 
 
     }
