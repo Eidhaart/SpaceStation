@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class Ship implements Mining{
+public class Ship implements Mining {
 
 
     private String name;
-    private int size;
-    private int mineSpeed = 10;
+    private int size = 1;
+    private int mineEfficiency = 10;
     private boolean isDocked;
-    private double miningLevel = 0.25;
+    private int timesSent;
 
     List<CrewMember> members = new ArrayList<>();
     HashMap<String, Integer> shipResources = new HashMap<>();
@@ -22,11 +22,9 @@ public class Ship implements Mining{
     }
 
 
-
     public String getName() {
         return name;
     }
-
 
 
     public int getSize() {
@@ -34,11 +32,9 @@ public class Ship implements Mining{
     }
 
 
-
-    public int getMineSpeed() {
-        return mineSpeed;
+    public int getMineEfficiency() {
+        return mineEfficiency;
     }
-
 
 
     public List<CrewMember> getMembers() {
@@ -46,11 +42,9 @@ public class Ship implements Mining{
     }
 
 
-
     public void dock(Boolean docked) {
         this.isDocked = docked;
     }
-
 
 
     public boolean getDock() {
@@ -59,35 +53,40 @@ public class Ship implements Mining{
 
 
     @Override
-    public HashMap<String, Integer> mine() throws InterruptedException, NullPointerException {
+    public HashMap<String, Integer> mine() throws NullPointerException {
         Random random = new Random();
-        System.out.println(this.name+ " Is sent out to Mine resources!");
-        for (int i = 0; i < this.mineSpeed; i++) {
+        for (int i = 0; i < this.mineEfficiency; i++) {
 
-            if (random.nextInt(4)==0){
-                System.out.println("Gathered some food");
-                if (shipResources.containsKey("food")){
-                    shipResources.put("food",shipResources.get("food")+1);
-                }else {
-                    shipResources.put("food",1);
+            if (random.nextInt(4) == 0) {
+                if (shipResources.containsKey("food")) {
+                    shipResources.put("food", shipResources.get("food") + 1);
+                } else {
+                    shipResources.put("food", 1);
                 }
-            }else if (random.nextInt(3)==0){
-                System.out.println("Mined some iron!");
-                if (shipResources.containsKey("iron")){
-                    shipResources.put("iron",shipResources.get("iron")+1);
-                }else {
-                    shipResources.put("iron",1);
+            } else if (random.nextInt(3) == 0) {
+                if (shipResources.containsKey("iron")) {
+                    shipResources.put("iron", shipResources.get("iron") + 1);
+                } else {
+                    shipResources.put("iron", 1);
                 }
-            }else if (random.nextInt(50)==0){
-                System.out.println("Mined some gold!");
-                if (shipResources.containsKey("gold")){
-                    shipResources.put("gold",shipResources.get("gold")+1);
-                }else {
-                    shipResources.put("gold",1);
+            } else if (random.nextInt(50) == 0) {
+                if (shipResources.containsKey("gold")) {
+                    shipResources.put("gold", shipResources.get("gold") + 1);
+                } else {
+                    shipResources.put("gold", 1);
                 }
             }
         }
-        return this.shipResources;
+        if (shipResources.containsKey("gold") || shipResources.containsKey("iron") || shipResources.containsKey("food")) {
+            return this.shipResources;
+
+        } else {
+            shipResources.put("gold", 0);
+            shipResources.put("iron", 0);
+            shipResources.put("food", 0);
+            return shipResources;
+        }
+
     }
 
     @Override
@@ -103,12 +102,10 @@ public class Ship implements Mining{
 
     @Override
     public String toString() {
-        return "Ship{" +
-                "name='" + name + '\'' +
-                ", size=" + size +
-                ", mineSpeed=" + mineSpeed +
-                ", members=" + members +
-                '}';
+        return "\nSize:" + size +
+                "\nMining efficiency:" + mineEfficiency +
+                "\nMembers:" + members +
+                "\n------------------------\n";
     }
 
 
