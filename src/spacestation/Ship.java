@@ -9,13 +9,14 @@ public class Ship implements Mining {
 
 
     private String name;
-    private int size = 1;
-    private int mineEfficiency = 10;
+    private int size;
+    private int mineSpeed = 10;
     private boolean isDocked;
-    private int timesSent;
+    private double miningLevel = 0.25;
 
     List<CrewMember> members = new ArrayList<>();
     HashMap<String, Integer> shipResources = new HashMap<>();
+
 
     public Ship(String name) {
         this.name = name;
@@ -32,8 +33,8 @@ public class Ship implements Mining {
     }
 
 
-    public int getMineEfficiency() {
-        return mineEfficiency;
+    public int getMineSpeed() {
+        return mineSpeed;
     }
 
 
@@ -53,40 +54,29 @@ public class Ship implements Mining {
 
 
     @Override
-    public HashMap<String, Integer> mine() throws NullPointerException {
+    public HashMap<String, Integer> mine() throws InterruptedException, NullPointerException {
         Random random = new Random();
-        for (int i = 0; i < this.mineEfficiency; i++) {
+        shipResources.put("iron",0);
+        shipResources.put("food",0);
+        shipResources.put("gold",0);
+        System.out.println(this.name + " Is sent out to Mine resources!");
+        for (int i = 0; i < this.mineSpeed; i++) {
 
             if (random.nextInt(4) == 0) {
-                if (shipResources.containsKey("food")) {
-                    shipResources.put("food", shipResources.get("food") + 1);
-                } else {
-                    shipResources.put("food", 1);
-                }
+                System.out.println("Gathered some food");
+                shipResources.put("food", shipResources.get("food") + 1);
+
             } else if (random.nextInt(3) == 0) {
-                if (shipResources.containsKey("iron")) {
-                    shipResources.put("iron", shipResources.get("iron") + 1);
-                } else {
-                    shipResources.put("iron", 1);
-                }
+                System.out.println("Mined some iron!");
+                shipResources.put("iron", shipResources.get("iron") + 1);
+
             } else if (random.nextInt(50) == 0) {
-                if (shipResources.containsKey("gold")) {
-                    shipResources.put("gold", shipResources.get("gold") + 1);
-                } else {
-                    shipResources.put("gold", 1);
-                }
+                System.out.println("Mined some gold!");
+                shipResources.put("gold", shipResources.get("gold") + 1);
+
             }
         }
-        if (shipResources.containsKey("gold") || shipResources.containsKey("iron") || shipResources.containsKey("food")) {
-            return this.shipResources;
-
-        } else {
-            shipResources.put("gold", 0);
-            shipResources.put("iron", 0);
-            shipResources.put("food", 0);
-            return shipResources;
-        }
-
+        return this.shipResources;
     }
 
     @Override
@@ -102,10 +92,12 @@ public class Ship implements Mining {
 
     @Override
     public String toString() {
-        return "\nSize:" + size +
-                "\nMining efficiency:" + mineEfficiency +
-                "\nMembers:" + members +
-                "\n------------------------\n";
+        return "Ship{" +
+                "name='" + name + '\'' +
+                ", size=" + size +
+                ", mineSpeed=" + mineSpeed +
+                ", members=" + members +
+                '}';
     }
 
 
