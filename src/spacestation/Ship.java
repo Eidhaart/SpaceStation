@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class Ship implements Mining {
+public class Ship {
 
 
     private String name;
@@ -27,7 +27,7 @@ public class Ship implements Mining {
     public Ship(String name) throws IOException {
         this.name = name;
         this.size = 1;
-        members.add(new CrewMember(Files.readAllLines(Path.of("C:\\Users\\eidha\\Documents\\SpaceStation\\src\\names.txt")).get(random.nextInt(32)+1)));
+        members.add(new CrewMember(Files.readAllLines(Path.of("SpaceStation\\src\\names.txt")).get(random.nextInt(32) + 1)));
     }
 
 
@@ -61,7 +61,6 @@ public class Ship implements Mining {
     }
 
 
-    @Override
     public HashMap<String, Integer> mine() throws InterruptedException, NullPointerException {
         Random random = new Random();
         shipResources.put("iron", 0);
@@ -81,16 +80,6 @@ public class Ship implements Mining {
             }
         }
         return this.shipResources;
-    }
-
-    @Override
-    public void takeDamage() {
-
-    }
-
-    @Override
-    public void heal() {
-
     }
 
 

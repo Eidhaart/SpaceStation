@@ -1,6 +1,5 @@
 package spacestation;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -10,7 +9,7 @@ public class SpaceStation {
     private String name;
     private int credits;
     private int shipCapacity = 3;
-    private int day=1;
+    private int day = 1;
 
     HashMap<String, Ship> ships;
     Cargo cargo;
@@ -76,7 +75,7 @@ public class SpaceStation {
         return ships.entrySet().stream().map(e -> e.getKey() + ":" + e.getValue()).collect(Collectors.joining("\n"));
     }
 
-    public String crewMembersToString(){
+    public String crewMembersToString() {
         return ships.values().stream().map(ship -> "" + ship.getMembers()).collect(Collectors.joining("\n"));
     }
 
@@ -93,7 +92,8 @@ public class SpaceStation {
                 "\nCargo: " + cargo +
                 "\n--------------------------";
     }
-    public void nextDay(){
+
+    public void nextDay() {
         Random random = new Random();
         this.day = this.day + 1;
 

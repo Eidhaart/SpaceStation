@@ -9,15 +9,14 @@ public class Cargo {
     HashMap<String, Integer> resourcesDeposited = new HashMap<>();
 
 
-
     public Cargo(int storage) {
         this.storage = storage;
-        this.resourcesDeposited.put("iron",0);
-        this.resourcesDeposited.put("food",0);
-        this.resourcesDeposited.put("gold",0);
-        this.resources.put("iron",0);
-        this.resources.put("food",0);
-        this.resources.put("gold",0);
+        this.resourcesDeposited.put("iron", 0);
+        this.resourcesDeposited.put("food", 0);
+        this.resourcesDeposited.put("gold", 0);
+        this.resources.put("iron", 0);
+        this.resources.put("food", 0);
+        this.resources.put("gold", 0);
 
     }
 
@@ -25,10 +24,10 @@ public class Cargo {
     public String toString() {
         return "Cargo:" +
                 "\nResources=" + resourcesDeposited +
-                "\nStorage Left=" + showStorageLeft() ;
+                "\nStorage Left=" + showStorageLeft();
     }
 
-    public int showStorageLeft(){
+    public int showStorageLeft() {
 
         for (Integer value : resourcesDeposited.values()) {
             this.storage -= value;
@@ -37,7 +36,7 @@ public class Cargo {
 
     }
 
-    public void addResources(String resource, int quantity){
-        this.resources.put(resource.toLowerCase(),quantity);
+    public void addResources(String resource, int quantity) {
+        this.resources.put(resource.toLowerCase(), quantity);
     }
 }

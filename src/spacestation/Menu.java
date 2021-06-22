@@ -10,14 +10,13 @@ public class Menu {
     static Scanner scanner = new Scanner(System.in);
 
 
-
     public void menu1() throws InterruptedException, NullPointerException, IOException {
         boolean quit = false;
         int choice;
 
         System.out.println("---Welcome to SPACE STATION!---");
         System.out.println("Enter the name of your Space Station:");
-        SpaceStation station = new SpaceStation(scanner.nextLine(), 200,50);
+        SpaceStation station = new SpaceStation(scanner.nextLine(), 200, 50);
         System.out.println("Let's start off by buying a ship!");
         System.out.println("A brand new ship will cost you 100 Credits");
         station.buyShip();

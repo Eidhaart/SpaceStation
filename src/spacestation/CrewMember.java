@@ -24,7 +24,7 @@ public class CrewMember {
 
     public CrewMember(String name) {
         this.name = name;
-        this.health = random.nextInt(5)+20;
+        this.health = random.nextInt(5) + 20;
         this.level = 1;
         this.type = "Worker";
         this.energy = 50;
@@ -35,17 +35,16 @@ public class CrewMember {
         return speed;
     }
 
-    public int getEnergy(){
+    public int getEnergy() {
         return energy;
     }
 
 
-
-    public String toString(){
-        return name+"="+
-                " Level: "+ level +
-                " Health: "+ health+
-                " Type: "+type;
+    public String toString() {
+        return name + "=" +
+                " Level: " + level +
+                " Health: " + health +
+                " Type: " + type;
     }
 
 

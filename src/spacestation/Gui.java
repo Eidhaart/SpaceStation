@@ -1,6 +1,6 @@
 package spacestation;
 
-public class Gui  {
+public class Gui {
 
 
 }
