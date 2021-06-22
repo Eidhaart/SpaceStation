@@ -1,5 +1,7 @@
 package spacestation;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -8,15 +10,16 @@ public class SpaceStation {
     private String name;
     private int credits;
     private int shipCapacity = 3;
+    private int day=1;
 
     HashMap<String, Ship> ships;
     Cargo cargo;
     Scanner scanner = new Scanner(System.in);
 
-    public SpaceStation(String name, int credits) {
+    public SpaceStation(String name, int credits, int storage) {
         this.name = name;
         this.credits = credits;
-        this.cargo = new Cargo(200);
+        this.cargo = new Cargo(storage);
         this.ships = new HashMap<>();
     }
 
@@ -29,7 +32,7 @@ public class SpaceStation {
         }
     }
 
-    public void buyShip() {
+    public void buyShip() throws IOException {
 
         if (creditRequirements() && ships.size() < shipCapacity) {
             System.out.println("You bought a new Ship!");
@@ -70,7 +73,11 @@ public class SpaceStation {
 
 
     public String shipsToString() {
-        return ships.entrySet().stream().map(e -> e.getKey() + ": " + e.getValue()).collect(Collectors.joining(""));
+        return ships.entrySet().stream().map(e -> e.getKey() + ":" + e.getValue()).collect(Collectors.joining("\n"));
+    }
+
+    public String crewMembersToString(){
+        return ships.values().stream().map(ship -> "" + ship.getMembers()).collect(Collectors.joining("\n"));
     }
 
 
@@ -85,5 +92,10 @@ public class SpaceStation {
                 "\n--------------------------" +
                 "\nCargo: " + cargo +
                 "\n--------------------------";
+    }
+    public void nextDay(){
+        Random random = new Random();
+        this.day = this.day + 1;
+
     }
 }

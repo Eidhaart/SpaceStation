@@ -23,9 +23,18 @@ public class Cargo {
 
     @Override
     public String toString() {
-        return "Cargo" +
-                "\nstorage=" + storage +
-                "\nresources=" + resourcesDeposited;
+        return "Cargo:" +
+                "\nResources=" + resourcesDeposited +
+                "\nStorage Left=" + showStorageLeft() ;
+    }
+
+    public int showStorageLeft(){
+
+        for (Integer value : resourcesDeposited.values()) {
+            this.storage -= value;
+        }
+        return this.storage;
+
     }
 
     public void addResources(String resource, int quantity){

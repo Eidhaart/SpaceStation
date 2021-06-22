@@ -1,5 +1,9 @@
 package spacestation;
 
+import java.io.IOException;
+import java.lang.reflect.Member;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,13 +17,17 @@ public class Ship implements Mining {
     private int mineSpeed = 10;
     private boolean isDocked;
     private double miningLevel = 0.25;
+    private int timesSent;
 
+    Random random = new Random();
     List<CrewMember> members = new ArrayList<>();
     HashMap<String, Integer> shipResources = new HashMap<>();
 
 
-    public Ship(String name) {
+    public Ship(String name) throws IOException {
         this.name = name;
+        this.size = 1;
+        members.add(new CrewMember(Files.readAllLines(Path.of("C:\\Users\\eidha\\Documents\\SpaceStation\\src\\names.txt")).get(random.nextInt(32)+1)));
     }
 
 
@@ -56,22 +64,18 @@ public class Ship implements Mining {
     @Override
     public HashMap<String, Integer> mine() throws InterruptedException, NullPointerException {
         Random random = new Random();
-        shipResources.put("iron",0);
-        shipResources.put("food",0);
-        shipResources.put("gold",0);
-        System.out.println(this.name + " Is sent out to Mine resources!");
+        shipResources.put("iron", 0);
+        shipResources.put("food", 0);
+        shipResources.put("gold", 0);
         for (int i = 0; i < this.mineSpeed; i++) {
 
             if (random.nextInt(4) == 0) {
-                System.out.println("Gathered some food");
                 shipResources.put("food", shipResources.get("food") + 1);
 
             } else if (random.nextInt(3) == 0) {
-                System.out.println("Mined some iron!");
                 shipResources.put("iron", shipResources.get("iron") + 1);
 
             } else if (random.nextInt(50) == 0) {
-                System.out.println("Mined some gold!");
                 shipResources.put("gold", shipResources.get("gold") + 1);
 
             }
@@ -92,11 +96,9 @@ public class Ship implements Mining {
 
     @Override
     public String toString() {
-        return "Ship{" +
-                "name='" + name + '\'' +
-                ", size=" + size +
-                ", mineSpeed=" + mineSpeed +
-                ", members=" + members +
+        return " Size=" + size +
+                " MineSpeed=" + mineSpeed +
+                " Members=" + members +
                 '}';
     }
 

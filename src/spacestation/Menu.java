@@ -1,6 +1,9 @@
 package spacestation;
 
 
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
@@ -8,13 +11,13 @@ public class Menu {
 
 
 
-    public void menu1() throws InterruptedException, NullPointerException {
+    public void menu1() throws InterruptedException, NullPointerException, IOException {
         boolean quit = false;
         int choice;
 
         System.out.println("---Welcome to SPACE STATION!---");
         System.out.println("Enter the name of your Space Station:");
-        SpaceStation station = new SpaceStation(scanner.nextLine(), 200);
+        SpaceStation station = new SpaceStation(scanner.nextLine(), 200,50);
         System.out.println("Let's start off by buying a ship!");
         System.out.println("A brand new ship will cost you 100 Credits");
         station.buyShip();
@@ -24,6 +27,7 @@ public class Menu {
 
         while (!quit) {
             System.out.println("Menu:" +
+                    "\n0. Next day" +
                     "\n1. Buy a new ship" +
                     "\n2. Gather resources" +
                     "\n3. Show Ships" +
@@ -36,17 +40,22 @@ public class Menu {
             choice = scanner.nextInt();
             Scanner scanner2 = new Scanner(System.in);
             switch (choice) {
+                case 0:
+
+                    break;
                 case 1:
                     station.buyShip();
                     break;
                 case 2:
                     System.out.println("Which ship would you like to send?");
+                    System.out.println(station.shipsToString());
                     station.sendShip(scanner2.nextLine());
                     break;
                 case 3:
                     System.out.println(station.shipsToString());
                     break;
                 case 4:
+                    System.out.println(station.crewMembersToString());
                     break;
                 case 5:
                     break;
